@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<title>8 Brooks Lane Rental - Gallery</title>
+	<!--link to external CSS document-->
+	<link rel="stylesheet" type="text/css" href="static/brooksLaneStyles.css">
+		<!--Javascript which allows gallery image to be cycled-->
+	<script>
+		function imgUpdate() {
+			currentsrc = document.getElementById('gallery').src;
+			if (currentsrc.includes('static/images/house1.jpg'))	{
+				document.getElementById('gallery').src='static/images/house2.jpg';
+				document.getElementById('caption').innerHTML='Another view of the house from outside';
+			}
+			else if (currentsrc.includes('static/images/house2.jpg'))	{
+				document.getElementById('gallery').src='static/images/dining1.jpg';
+				document.getElementById('caption').innerHTML='Dining room, comfortable and homely, seamlessly interwoven with the living room';
+			}
+			else if (currentsrc.includes('static/images/dining1.jpg')) {
+				document.getElementById('gallery').src='static/images/kitchen1.jpg';
+				document.getElementById('caption').innerHTML='The kitchen blends state-of-the-art technology with vintage style';
+			}
+			else if (currentsrc.includes('static/images/kitchen1.jpg')) {
+				document.getElementById('gallery').src='static/images/porch1.jpg';
+				document.getElementById('caption').innerHTML='A porch lets you take in the gorgeous St. Albans countryside';
+			}
+			else if (currentsrc.includes('static/images/porch1.jpg')) {
+				document.getElementById('gallery').src='static/images/stairs1.jpg';
+				document.getElementById('caption').innerHTML='Classic meets modern in 8 Brooks Lane';
+			}
+			else	{
+				document.getElementById('gallery').src='static/images/house1.jpg';
+				document.getElementById('caption').innerHTML='Outside view of the house from the driveway';
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<!--divisions allow more control over page formatting using CSS-->
+	<div id="wrapper">
+		<!--The LHS div will be reused in all other pages-->
+		<div id="LHS">
+			<img src="static/images/house1.jpg" alt="8 Brooks Lane" height=100 width=100>
+			<h1><strong>8 Brooks Lane Rental</strong></h1>
+			<br/>
+			<!--Navigation Menu-->
+			<ul>
+				<li><a href="8BrooksLaneRental-Home.html">Home</a>
+				<li><a href="8BrooksLaneRental-Gallery.html">Gallery</a>
+				<li><a href="8BrooksLaneRental-PointsofInterest.html">Local Points of Interest</a>
+				<li><a href="8BrooksLaneRental-Rental.html">Apply for Rental</a>
+				<li><a href="8BrooksLaneRental-Reviews.html">Reviews</a>
+			</ul>
+		</div>
+		<div id="RHS">
+			<h1>Gallery</h1>
+			<h3 class=stylised>See for yourself...</h3>
+			<p>A gallery of images of the property for you to peruse. Press the button to
+			switch to the next image</p>
+			<!--Image will be changed using the button underneath to make a gallery-->
+			<img id=gallery src="static/images/house1.jpg" alt="gallery">
+			<button type="button" onclick="imgUpdate()">Next</button>
+			<h3 id=caption>Outside view of the house from the driveway</h3> 
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<title>8 Brooks Lane Rental - Local Points of Interest</title>
+	<!--link to external CSS document-->
+	<link rel="stylesheet" type="text/css" href="static/brooksLaneStyles.css">
+	<!--Javascript adds functionality to dropdown list-->
+	<script>
+		function listSelect() {
+			var theList = document.getElementById('poi');
+			var theValue = theList.options[theList.selectedIndex].value;
+			if (theValue.includes('country'))	{
+				document.getElementById('poiImage').src='static/images/country.jpg';
+				document.getElementById('poiText').innerHTML='The gorgeous St.Albans countryside is renowned throughout the nation for its lush green fields and rolling hills, all at your doorstep';
+				}
+			if (theValue.includes('cathedral')) {
+				document.getElementById('poiImage').src='static/images/cathedral.jpg';
+				document.getElementById('poiText').innerHTML='St. Albans Cathedral is a marvel of Roman architecture and a vital part of any day out in the city';
+				}
+			if (theValue.includes('park')) {
+				document.getElementById('poiImage').src='static/images/park.jpg';
+				document.getElementById('poiText').innerHTML='This park is simultaneously a showcase of ancient Roman ruins and a relaxing day out for the whole family. Take a picnic!';
+				}
+		}
+	</script>
+</head>
+
+<body>
+	<!--divisions allow more control over page formatting using CSS-->
+	<div id="wrapper">
+		<!--The LHS div will be reused in all other pages-->
+		<div id="LHS">
+			<img src="static/images/house1.jpg" alt="8 Brooks Lane" height=100 width=100>
+			<h1><strong>8 Brooks Lane Rental</strong></h1>
+			<br/>
+			<!--Navigation Menu-->
+			<ul>
+				<li><a href="8BrooksLaneRental-Home.html">Home</a>
+				<li><a href="8BrooksLaneRental-Gallery.html">Gallery</a>
+				<li><a href="8BrooksLaneRental-PointsofInterest.html">Local Points of Interest</a>
+				<li><a href="8BrooksLaneRental-Rental.html">Apply for Rental</a>
+				<li><a href="8BrooksLaneRental-Reviews.html">Reviews</a>
+			</ul>
+		</div>
+		<div id="RHS">
+			<h1>Local Points of Interest</h1>
+			<p>The lavish lifestyle of renting 8 Brooks Lane doesn't stop there, it is also surrounded by
+			many exciting and interesting things to do and see</p>
+			<p>Choose a point of interest from the list below to see more details about it</p>
+			<!--Drop down list of all points of interest the user can choose-->
+			<select id=poi onchange="listSelect()">
+				<option selected value="country">Countryside</option>
+				<option value="cathedral">St Albans Cathedral</option>
+				<option value="park">Verulamium Park</option>
+			</select>
+			<br/>
+			<!--Below values are left blank initially. Content will be added by Javascript-->
+			<img id=poiImage src='static/images/country.jpg' alt="point of interest" height=200 width=250>
+			<p id=poiText>'The gorgeous St.Albans countryside is renowned throughout the nation for its lush green fields and rolling hills, all at your doorstep'</p>
+		</div>
+	</div>
+</body>
+</html>

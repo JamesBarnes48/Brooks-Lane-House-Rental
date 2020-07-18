@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<title>8 Brooks Lane Rental- Reviews</title>
+	<!--link to external CSS document-->
+	<link rel="stylesheet" type="text/css" href="static/brooksLaneStyles.css">
+	<!--internal CSS as table formatting doesnt work when externally formatted-->
+	<style>
+		table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	}
+	
+	table, th, td {
+		border: 1px solid black;
+		width: 500px;
+	}
+	</style>
+</head>
+
+<body>
+	<!--divisions allow more control over page formatting using CSS-->
+	<div id="wrapper">
+		<!--The LHS div will be reused in all other pages-->
+		<div id="LHS">
+			<img src="static/images/house1.jpg" alt="8 Brooks Lane" height=100 width=100>
+			<h1><strong>8 Brooks Lane Rental</strong></h1>
+			<br/>
+			<!--Navigation Menu-->
+			<ul>
+				<li><a href="8BrooksLaneRental-Home.html">Home</a>
+				<li><a href="8BrooksLaneRental-Gallery.html">Gallery</a>
+				<li><a href="8BrooksLaneRental-PointsofInterest.html">Local Points of Interest</a>
+				<li><a href="8BrooksLaneRental-Rental.html">Apply for Rental</a>
+				<li><a href="8BrooksLaneRental-Reviews.html">Reviews</a>
+			</ul>
+		</div>
+		<div id="RHS">
+			<h1>Reviews</h1>
+			<h3 class=stylised>Don't just take it from us...</h3>
+			<p>Take it from previous clients...</p>
+			<p>Are you a client who is renting/has rented 8 Brooks Lane? Please leave your feedback too!</p>
+			
+			<h3 class=stylised>Enter Review Here</h3>
+			<!--Form takes all user input then sends the data to the enterReview method in the python file-->
+			<form action="/review" method ="POST">
+				<br/>
+				<input type="text" name="reviewText">
+				<br/>
+				<input type="submit" name="Submit" value = "Submit">
+			</form>
+			
+			<h3 class=stylised>Reviews:</h3>
+			<table id=reviewTable>
+				<!--header row-->
+				<tr>
+					<th>Review</th>
+					<th>Date</th>
+				</tr>
+				<!--Ensures everything in the csv file is read by the code below-->
+				{% for line in theReview %}
+				<tr>
+					<!--Each row in the table belongs to a line in the csv file-->
+					{% for row in line %}
+					<td>
+						<!--For each field in the table there is the one piece of text from the file, delimited by a comma-->
+						{{row}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</body>
+</html>

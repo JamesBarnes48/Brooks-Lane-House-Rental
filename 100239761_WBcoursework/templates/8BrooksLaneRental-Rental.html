@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<title>8 Brooks Lane Rental- Rental</title>
+	<!--link to external CSS document-->
+	<link rel="stylesheet" type="text/css" href="static/brooksLaneStyles.css">
+	<!--internal CSS as table formatting doesnt work when externally formatted-->
+	<style>
+		table {
+	border-collapse: collapse;
+	}
+	
+	table, th, td {
+		border: 1px solid black;
+	}
+	</style>
+	<script>
+	function deletePersonalInfo() 
+	{
+		var allRows = document.getElementById("bookingTable").rows;
+		for (var i=0; i < allRows.length; i++)
+		{
+			<!--ensures the function doesnt also delete the headings as well-->
+			if (allRows[i].getElementsByTagName("th").length > 0)
+			{
+				continue;
+			}
+			<!--if there is anything in the row-->
+			if (allRows[i].cells.length > 1)
+			{
+				allRows[i].deleteCell(1);
+				allRows[i].deleteCell(0);
+			}
+		}
+		return
+	}
+	</script>
+</head>
+
+<body onload="deletePersonalInfo();">
+	<!--divisions allow more control over page formatting using CSS-->
+	<div id="wrapper">
+		<!--The LHS div will be reused in all other pages-->
+		<div id="LHS">
+			<img src="static/images/house1.jpg" alt="8 Brooks Lane" height=100 width=100>
+			<h1><strong>8 Brooks Lane Rental</strong></h1>
+			<br/>
+			<!--Navigation Menu-->
+			<ul>
+				<li><a href="8BrooksLaneRental-Home.html">Home</a>
+				<li><a href="8BrooksLaneRental-Gallery.html">Gallery</a>
+				<li><a href="8BrooksLaneRental-PointsofInterest.html">Local Points of Interest</a>
+				<li><a href="8BrooksLaneRental-Rental.html">Apply for Rental</a>
+				<li><a href="8BrooksLaneRental-Reviews.html">Reviews</a>
+			</ul>
+		</div>
+		<div id="RHS">
+			<h1>Apply for Rental</h1>
+			<p>You can submit an application to rent the property here. Just enter the start and end date of your rental, your name and email and your application will be processed</p>
+			<h3 class=stylised>Fully Booked Dates:</h3>
+			
+			<h3 class=stylised>Enter Application Here:</h3>
+			
+			<!--Form takes all user input then sends the data to the application method in the python file-->
+			<form action="/application" method ="POST">
+				<br/>
+				<h4>Name:</h4>
+				<input type="text" name="appName">
+				<br/>
+				<h4>Email Address:</h4>
+				<input type="text" name="appEmail">
+				<br/>
+				<h4>Rent Start Date</h4>
+				<input type="date" name="appStartDate" id="startDate">
+				<br/>
+				<h4>Rent End Date</h4>
+				<input type="date" name="appEndDate" id="endDate">
+				<br/>
+				<input type="submit" name="Submit" value="Submit">
+			</form>
+			
+			<h3 class=stylised> Booked Out Dates:</h3>
+			<table id=bookingTable>
+				<!--header row-->
+				<tr>
+					<th>Start Date</th>
+					<th>End Date</th>
+				</tr>
+				<!--Ensures everything in the csv file is read by the code below-->
+				{% for line in theBooking %}
+				<tr>
+					<!--Each row in the table belongs to a line in the csv file-->
+					{% for row in line %}
+					<td>
+						<!--For each field in the table there is the one piece of text from the file, delimited by a comma-->
+						{{row}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</body>
+</html>
